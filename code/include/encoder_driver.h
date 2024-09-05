@@ -6,6 +6,7 @@ class Encoder_driver {
 public:
   Encoder_driver(int c1, int c2);
   int position();
+  int count();
   void read_state();
 	void init();
 
@@ -17,4 +18,5 @@ private:
   Digital_in direction_encoder;
 	int position_state; // State of position pin
   int position_value; // Diff in position since init
+	int pulse_count;
 };

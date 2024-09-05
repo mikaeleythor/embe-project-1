@@ -180,6 +180,12 @@
         "output": ".pio/build/nanoatmega328/src/main.cpp.o"
     },
     {
+        "command": "/home/cinder/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/nanoatmega328/src/serial_write.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega328p -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60115 -DARDUINO_AVR_NANO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -Iinclude -Isrc -I/home/cinder/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/cinder/.platformio/packages/framework-arduino-avr/variants/eightanaloginputs src/serial_write.cpp",
+        "directory": "/home/cinder/shared/legend/skoli/onn_11/embe/projects/project-1/code",
+        "file": "src/serial_write.cpp",
+        "output": ".pio/build/nanoatmega328/src/serial_write.cpp.o"
+    },
+    {
         "command": "/home/cinder/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/nanoatmega328/src/timer_msec.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega328p -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60115 -DARDUINO_AVR_NANO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -Iinclude -Isrc -I/home/cinder/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/cinder/.platformio/packages/framework-arduino-avr/variants/eightanaloginputs src/timer_msec.cpp",
         "directory": "/home/cinder/shared/legend/skoli/onn_11/embe/projects/project-1/code",
         "file": "src/timer_msec.cpp",

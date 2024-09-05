@@ -17,34 +17,60 @@ To keep things convenient for engineering students, pulse rate was defined as th
 of positive edges per second, which has the unit $Hz$.
 \subsection*{Max pulse rate}
 The maximum pulse rate of the motor was found using the following formula: \[
-    \text{max pulse rate} = \frac{\text{motor speed in rpm} \cdot \text{max pulses per
-    revolution}}{60s}
+	\text{max pulse rate} = \frac{\text{motor speed in rpm} \cdot \text{max pulses per
+			revolution}}{60s}
 \] which yielded \[
-\text{max pulse rate} = \frac{155rpm \cdot (7\cdot 2\cdot 100)ppr}{60s} \approx 3617Hz
-\]
+	\text{max pulse rate} = \frac{155rpm \cdot (7\cdot 100)ppr}{60s} \approx 1808Hz
+\] for the no-load motor speed. The oscillosscope measured 1776Hz.
 
 \subsection*{Max time between samples}
 The minimum sample rate was found using the Shannon Sampling Theorem, which
 states that the sample rate must be at least twice the bandwidth of the signal to avoid
 aliasing. Consequently, the maximum time between samples can be determined via \[
-    \text{max time between samples} = \frac{1}{2*\text{sample rate in Hz}} =
-    \frac{1}{2\cdot\frac{2.1\cdot 10^7ppm}{60s}} = 1.429\mu s
+	\text{max time between samples} = \frac{1}{2*\text{pulse rate}} =
+	\frac{1}{2\cdot1808Hz} = 276\mu s
 \]
 
 \subsection*{Max response time}
 To detect direction, a second encoder signal which is shifted by 90\textdegree{} is added
 and so, to correctly determine the direction, the response time must be at maximum half of
-the max time between samples, i.e. $\frac{1.429\mu s}{2} = 0.715\mu s$. The corresponding
+the max time between samples, i.e. $\frac{276\mu s}{2} = 138\mu s$. The corresponding
 sampling rate can be calculated as \[
-    \text{sampling rate} = \frac{1}{1.429\mu s}Hz = 699.8kHz
+	\text{sampling rate} = \frac{1}{138\mu s}Hz = 7246Hz
 \]
 
-The response time was verified on the oscilloscope by adding delays to the input signal,
-on each side of the threshold, verifying that delays under $0.715\mu s$ yielded a signal
-proportionate to the rotation of the motor, while delays over $0.715\mu s$ yielded a
-signal which were inversely proportional to the rotation of the motor.
+The response time was tested on the oscilloscope by adding delays to the input signal,
+on each side of the threshold, yielding that delays under $180\mu s$ yielded a stable
+light from an LED which turns on when the motor rotates clockwise, while delays over
+$190\mu s$ yielded no light from the LED.
 
 
+\subsection*{Counting}
+The counting was performed using the oscilloscope. Experiments were performed in a manner
+such that pulses were counted during an approximately 10s interval, then a computed count
+was transmitted through UART. A single twist of the motor yielded a count on the
+oscilloscope (Figure \ref{fig:osc}) which was approximately half of the pulses transmitted via UART.
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=0.95\textwidth]{./oscilloscope.jpeg}
+	\end{center}
+	\caption{59 pulses were counted in 10s after a single twist of the motor. This roughly
+		matched the 120 edges that were counted by the microcontroller}\label{fig:osc}
+\end{figure}
+
+\section*{Part 2}
+Printing inside the main loop in each iteration resulted in the counter to miss pulses.
+The oscilloscope showed 113 pulses and the UART countar was 52 (a correct output would be
+56).
+
+\section*{Part 3}
+The C1 pin was connected in parallel to both PB1 and PD2. PD2 was used to trigger the
+interrupt (which was implemented inside the Encoder), and PB1 was used to read the value
+in the same manner as before. The results were an increased accuracy in the UART output
+and a stronger correlation between the oscilloscope and the UART. The UART was also more
+comfortable to work with and more stable, i.e. spacing the print statements between 3s of
+down time made the output more readable.
 
 %\newpage
 %\printbibliography
