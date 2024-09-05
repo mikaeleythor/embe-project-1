@@ -10,7 +10,21 @@
 \vspace{.5cm}
 \noindent Háskólinn í Reykjavík, Embedded Systems Programming, \textbf{Project 1} \par
 \noindent \textbf{Eyþór Mikael Eyþórsson}, \texttt{eythore19@ru.is}\par
+\noindent \textbf{Ólafur Þórsson}, \texttt{olafurth24@ru.is}\par
+\noindent \textbf{Vilhjálmur Páll Thorarensen}, \texttt{vilhjalmurt19@ru.is}\par
 %\noindent Instructors: \textbf{TEACHER} \par
+
+\section*{About the assignment}
+The code was implemented in a manner such that it executes parts of the assignment based
+on compiler arguments, i.e. uncommenting the \texttt{// \#define PART1} line in
+\texttt{main.cpp} makes the code execute part 1. The same goes for part 2 and 3 with the
+complication that part 1 and 3 have conditional code in \texttt{encoder\_driver.cpp}.
+
+The oscilloscope was set up the same during the whole project, i.e. one pole connected to
+ground and the other to C1.
+The video can be found \href{https://youtu.be/15Uzd80X8S8}{here} and the codebase
+\href{https://github.com/mikaeleythor/embe-project-1}{here}.
+
 
 \section*{Part 1}
 To keep things convenient for engineering students, pulse rate was defined as the number
@@ -21,7 +35,8 @@ The maximum pulse rate of the motor was found using the following formula: \[
 			revolution}}{60s}
 \] which yielded \[
 	\text{max pulse rate} = \frac{155rpm \cdot (7\cdot 100)ppr}{60s} \approx 1808Hz
-\] for the no-load motor speed. The oscillosscope measured 1776Hz.
+\] for the no-load motor speed. The oscillosscope measured 1776Hz while the motor was
+powered by a programmable DC power supply at 6V.
 
 \subsection*{Max time between samples}
 The minimum sample rate was found using the Shannon Sampling Theorem, which
